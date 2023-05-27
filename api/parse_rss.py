@@ -1,37 +1,36 @@
 import feedparser
-from fastapi import Request
-from fastapi.templating import Jinja2Templates
-
-template = Jinja2Templates(directory="templates")
 
 
-def parsing_rss(request: Request):
+def parsing_rss():
     donga = "https://rss.donga.com/science.xml"
     hankyung = "https://rss.hankyung.com/feed/it.xml"
+    khan = "https://www.khan.co.kr/rss/rssdata/it_news.xml"
+    newsis = "https://newsis.com/RSS/health.xml"
+    itworld = "https://www.itworld.co.kr/rss/feed/index.php"
+
     url_list = [
         donga,
-        hankyung
+        hankyung,
+        khan,
+        newsis,
+        itworld
     ]
     rss_dic = []
-    for p in url_list:
-        parse_rss = feedparser.parse(p)
-        if p is donga:
-            for i in parse_rss.entries:
-                rss_dic.append(
-                    {
-                        "title": i.title,
-                        "link": i.link,
-                        "published": i.published,
-                        "summary": i.summary
-                    }
-                )
-        if p is hankyung:
-            for i in parse_rss.entries:
-                rss_dic.append(
-                    {
-                        "title": i.title,
-                        "link": i.link,
-                        "published": i.published
-                    }
-                )
-    return template.TemplateResponse("feed.html", {"request": request, "rss_dic": rss_dic})
+    for parse_list in url_list:
+        parse_rss = feedparser.parse(parse_list)
+        for entry in parse_rss.entries:
+            try:
+                title = entry.title
+                link = entry.link
+                published = entry.published
+            except AttributeError:
+                title = None
+                link = None
+                published = None
+
+            rss_dic.append({
+                "title": title,
+                "link": link,
+                "published": published
+            })
+    return rss_dic
