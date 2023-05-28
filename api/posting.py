@@ -2,6 +2,7 @@ import os
 import datetime
 import requests
 from dotenv import load_dotenv
+from api.parse_rss import parsing_rss
 
 load_dotenv()
 
@@ -14,7 +15,7 @@ def post_to_tistory():
           f"&output=json" \
           f"&blogName=hyongkui" \
           f"&title={now.month}월 {now.day}일 뉴스" \
-          f"&content=안녕하세요 테스트 중입니다" \
+          f"&content={parsing_rss()}" \
           f"&visibility=0" \
           f"&category=1" \
           f"&published=time.time()"
