@@ -1,7 +1,7 @@
 import feedparser
+from datetime import datetime
 
-
-def parsing_rss():
+def parsing_rss(keyword):
     donga = "https://rss.donga.com/science.xml"
     hankyung = "https://rss.hankyung.com/feed/it.xml"
     khan = "https://www.khan.co.kr/rss/rssdata/it_news.xml"
@@ -17,6 +17,8 @@ def parsing_rss():
     ]
     rss_list = []
 
+    today = datetime.today()
+
     for url in url_list:
         parse_rss = feedparser.parse(url)
         # 지금 코드를 그대로 사용하면 RSS 피드 메인페이지의 목록을 그대로 긁어옴.
@@ -26,10 +28,12 @@ def parsing_rss():
             link = entry.link if hasattr(entry, "link") else None
             updated = entry.updated if hasattr(entry, "updated") else None
 
-            rss_list.append({
-                "title": title,
-                "link": link,
-                "updated": updated
-            })
+            if keyword in title and \
+                    datetime.strptime(updated, "%Y-%m-%dT%H:%M:%S%z").date() == today:
+                rss_list.append({
+                    "title": title,
+                    "link": link,
+                    "updated": updated
+                })
 
     return rss_list
