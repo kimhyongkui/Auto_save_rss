@@ -1,5 +1,5 @@
 import os
-import datetime
+from _datetime import datetime
 import requests
 from dotenv import load_dotenv
 from api.parse_rss import parsing_rss
@@ -20,7 +20,7 @@ def write_content(keyword):
 
 
 def post_to_tistory(keyword):
-    now = datetime.datetime.now()
+    now = datetime.now()
 
     url = f"https://www.tistory.com/apis/post/write?" \
           f"access_token={os.getenv('ACCESS_TOKEN')}" \
