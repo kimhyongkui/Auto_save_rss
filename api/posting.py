@@ -7,12 +7,19 @@ from api.parse_rss import parsing_rss
 load_dotenv()
 
 
-# parsing_rss()의 결과값은 딕셔너리 형태의 여러 기사들의 모인 리스트
-# 해당 리스트 속 기사들을 내가 포스팅하길 원하는 형식으로 바꿔놔야함
-# def write_content():
+def write_content(keyword):
+    rss_list = parsing_rss(keyword)
+    content = ""
+    for rss in rss_list:
+        title = rss.get("title")
+        link = rss.get("link")
+        content += f"<h3 data-ke-size='size23'>{title}</h3>\n"
+        content += f"<p data-ke-size='size16'><a href='{link}'>{link}</a></p>\n"
+        content += '<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />'
+    return content
 
 
-def post_to_tistory():
+def post_to_tistory(keyword):
     now = datetime.datetime.now()
 
     url = f"https://www.tistory.com/apis/post/write?" \
@@ -20,7 +27,7 @@ def post_to_tistory():
           f"&output=json" \
           f"&blogName=hyongkui" \
           f"&title={now.month}월 {now.day}일 뉴스" \
-          f"&content={parsing_rss()}" \
+          f"&content={write_content(keyword)}" \
           f"&visibility=0" \
           f"&category=1" \
           f"&published=time.time()"
