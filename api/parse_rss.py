@@ -1,23 +1,11 @@
 import feedparser
 from datetime import datetime
+from db.get.db_data import get_url_list
 
 
 def parsing_rss(keyword):
-    donga = "https://rss.donga.com/science.xml"
-    hankyung = "https://rss.hankyung.com/feed/it.xml"
-    khan = "https://www.khan.co.kr/rss/rssdata/it_news.xml"
-    newsis = "https://newsis.com/RSS/health.xml"
-    itworld = "https://www.itworld.co.kr/rss/feed/index.php"
-
-    url_list = [
-        donga,
-        hankyung,
-        khan,
-        newsis,
-        itworld
-    ]
+    url_list = get_url_list()
     rss_list = []
-
     today = datetime.today().date()
 
     for url in url_list:
@@ -27,6 +15,7 @@ def parsing_rss(keyword):
             link = entry.link if hasattr(entry, "link") else None
             updated = entry.updated if hasattr(entry, "updated") else None
 
+            # 파싱된 업데이트 날짜를 저장 -> 파싱에 성공하면 바뀌고 아니면 None 유지
             parsed_updated = None
 
             # 날짜 형식에 맞게 파싱하여 연도, 월, 일 추출
