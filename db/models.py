@@ -6,4 +6,4 @@ class Rss_list(Base):
     __tablename__ = "rss_list"
 
     rssNm = Column(VARCHAR(45), primary_key=True, nullable=False)
-    rssUrl = Column(VARCHAR(45), nullable=False)
+    rssUrl = Column(VARCHAR(255), nullable=False)
