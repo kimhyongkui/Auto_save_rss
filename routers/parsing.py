@@ -1,10 +1,10 @@
-from fastapi import APIRouter, Request
+from fastapi import APIRouter
 from api.parse_rss import parsing_rss
 
 router = APIRouter()
 
 
 @router.get("/feed")
-def parsing():
-    result = parsing_rss()
+def parsing(keyword):
+    result = parsing_rss(keyword)
     return result
