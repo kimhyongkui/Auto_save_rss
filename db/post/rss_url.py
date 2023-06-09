@@ -10,7 +10,7 @@ def add_rss(rss_name, rss_url):
     result = Rss_list(rssNm=rss_name, rssUrl=rss_url)
     session.add(result)
     session.commit()
-
+    session.close()
     return "저장 완료"
 
 
