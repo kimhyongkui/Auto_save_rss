@@ -5,6 +5,6 @@ router = APIRouter()
 
 
 @router.get("/feed")
-def parsed_rss(request: Request):
+def parsing(request: Request):
     result = parsing_rss(request)
     return result
