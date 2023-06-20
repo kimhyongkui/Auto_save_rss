@@ -1,8 +1,10 @@
 from fastapi import FastAPI
-
+from routers import feed
 import uvicorn
 
-app = FastAPI(title="item-analysis")
+app = FastAPI(title="auto-save-rss")
+
+app.include_router(feed.router, prefix="/rss")
 
 if __name__ == "__main__":
     uvicorn.run(
@@ -15,5 +17,5 @@ if __name__ == "__main__":
 
 @app.get("/")
 def main():
-    result = "hello"
+    result = "RSS 피드"
     return result

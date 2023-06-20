@@ -31,7 +31,7 @@ def parsing_rss(request: Request):
                     {
                         "title": i.title,
                         "link": i.link,
-                        "published": i.publishedg
+                        "published": i.published
                     }
                 )
     return template.TemplateResponse("feed.html", {"request": request, "rss_dic": rss_dic})
