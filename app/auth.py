@@ -1,22 +1,26 @@
 from dotenv import load_dotenv
 import os
+import requests
 
 load_dotenv()
 
 
+# 1시간 이후 만료됨
 def get_auth_code():
-    url = f"https://www.tistory.com/oauth/authorize?" \
-          f"client_id={os.getenv('APP_ID')}" \
-          f"&redirect_uri=http://www.tistory.com/member/blog" \
-          f"&response_type=code"
-    return url
+    auth_url = f"https://www.tistory.com/oauth/authorize?" \
+               f"client_id={os.getenv('APP_ID')}" \
+               f"&redirect_uri=http://www.tistory.com/member/blog" \
+               f"&response_type=code"
+    return auth_url
 
 
-def get_access_token():
+# 3개월 정도 이후 만료
+def get_access_token(auth_code):
     url = f"https://www.tistory.com/oauth/access_token?client_id={os.getenv('APP_ID')}" \
           f"&client_secret={os.getenv('SECRET_KEY')}" \
           f"&redirect_uri=http://www.tistory.com/member/blog" \
-          f"&code=5dc7de828e88450ed60983b3e09890aa02666c696062a92f580a20a0c8ffb1ccaf622122" \
+          f"&code={auth_code}" \
           f"&grant_type=authorization_code"
-    return url
-
+    response = requests.get(url)
+    access_token = response.text.split("=")[1]
+    return access_token

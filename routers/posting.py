@@ -5,6 +5,6 @@ router = APIRouter()
 
 
 @router.get("/feed")
-def posting(title, content):
-    result = post_to_tistory(title, content)
+def posting():
+    result = post_to_tistory()
     return result
