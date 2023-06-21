@@ -6,7 +6,7 @@ load_dotenv()
 
 
 # 1시간 이후 만료됨
-def get_auth_code():
+def get_auth_url():
     auth_url = f"https://www.tistory.com/oauth/authorize?" \
                f"client_id={os.getenv('APP_ID')}" \
                f"&redirect_uri=http://www.tistory.com/member/blog" \
