@@ -16,21 +16,19 @@ def parsing_rss():
         itworld
     ]
     rss_dic = []
-    for parse_list in url_list:
-        parse_rss = feedparser.parse(parse_list)
+
+    for url in url_list:
+        parse_rss = feedparser.parse(url)
+
         for entry in parse_rss.entries:
-            try:
-                title = entry.title
-                link = entry.link
-                published = entry.published
-            except AttributeError:
-                title = None
-                link = None
-                published = None
+            title = entry.title if hasattr(entry, "title") else None
+            link = entry.link if hasattr(entry, "link") else None
+            published = entry.published if hasattr(entry, "published") else None
 
             rss_dic.append({
                 "title": title,
                 "link": link,
                 "published": published
             })
+
     return rss_dic
