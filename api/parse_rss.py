@@ -23,12 +23,12 @@ def parsing_rss():
         for entry in parse_rss.entries:
             title = entry.title if hasattr(entry, "title") else None
             link = entry.link if hasattr(entry, "link") else None
-            published = entry.published if hasattr(entry, "published") else None
+            updated = entry.updated if hasattr(entry, "updated") else None
 
             rss_dic.append({
                 "title": title,
                 "link": link,
-                "published": published
+                "updated": updated
             })
 
     return rss_dic
