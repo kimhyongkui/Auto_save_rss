@@ -7,6 +7,11 @@ from api.parse_rss import parsing_rss
 load_dotenv()
 
 
+# parsing_rss()의 결과값은 딕셔너리 형태의 여러 기사들의 모인 리스트
+# 해당 리스트 속 기사들을 내가 포스팅하길 원하는 형식으로 바꿔놔야함
+# def write_content():
+
+
 def post_to_tistory():
     now = datetime.datetime.now()
 
