@@ -33,7 +33,6 @@ def post_to_tistory(keywords: list):
               f"&visibility=0" \
               f"&category=1135999" \
               f"&published=time.time()"
-
         response = requests.post(url)
 
         if response.status_code == 200:
