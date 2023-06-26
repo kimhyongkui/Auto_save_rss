@@ -25,37 +25,3 @@ def get_category_info():
         categories_list.append(categories_dict)
 
     return categories_list
-
-    # if response.status_code == 200:
-
-
-print(get_category_info())
-
-#
-#     data = {
-#   "tistory":{
-#     "status":"200",
-#     "item":{
-#       "url":"oauth",
-#       "secondaryUrl":"",
-#       "categories":[
-#         {
-#           "id":"403929",
-#           "name":"OAuth2.0 Athentication",
-#           "parent":"",
-#           "label":"OAuth2.0 Athentication",
-#           "entries":"0"
-#         },
-#         {
-#           "id":"403930",
-#           "name":"Blog API Series",
-#           "parent":"",
-#           "label":"Blog API Series",
-#           "entries":"0"
-#         },
-#         ...
-#       ]
-#     }
-#   }
-# }
-#
