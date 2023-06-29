@@ -29,7 +29,7 @@ def post_to_tistory(keyword):
           f"&title={now.month}월 {now.day}일 뉴스" \
           f"&content={write_content(keyword)}" \
           f"&visibility=0" \
-          f"&category=1" \
+          f"&category=1135999" \
           f"&published=time.time()"
 
     response = requests.post(url)
