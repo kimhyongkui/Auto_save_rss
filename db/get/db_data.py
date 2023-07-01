@@ -7,9 +7,13 @@ session = Session()
 
 
 def get_url_list():
-    result = session.query(Rss_list.rssUrl).all()
-    rss_url = []
-    for url in result:
-        rss_url.append(url[0])
+    try:
+        result = session.query(Rss_list.rssUrl).all()
+        rss_url = []
+        for url in result:
+            rss_url.append(url[0])
 
-    return rss_url
+        return rss_url
+
+    except Exception as err:
+        raise err
