@@ -3,7 +3,7 @@ from datetime import datetime
 from db.get.db_data import get_url_list
 
 
-def parsing_rss(keyword):
+def parsing_rss(keywords: list):
     url_list = get_url_list()
     rss_list = []
     today = datetime.today().date()
@@ -34,12 +34,12 @@ def parsing_rss(keyword):
                         except ValueError:
                             # 다른 형식의 경우에는 날짜 정보를 추출할 수 없음
                             pass
-
-            if parsed_updated == today and keyword in title:
-                rss_list.append({
-                    "title": title,
-                    "link": link,
-                    "updated": updated
-                })
+            for keyword in keywords:
+                if parsed_updated == today and keyword in title:
+                    rss_list.append({
+                        "title": title,
+                        "link": link,
+                        "updated": updated
+                    })
 
     return rss_list
