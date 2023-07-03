@@ -1,6 +1,6 @@
 from fastapi import FastAPI
-from routers import parsing, posting, access_token
-from routers.post import rss_url
+from routers import parsing, access_token
+from routers.post import rss_url, posting
 import uvicorn
 
 app = FastAPI(title="auto-save-rss")
