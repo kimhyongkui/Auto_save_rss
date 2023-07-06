@@ -12,6 +12,3 @@ def add_rss(rss_name, rss_url):
     session.commit()
     session.close()
     return "저장 완료"
-
-
-
