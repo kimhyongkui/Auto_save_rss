@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from routers.get import parsing, access_token
+from routers.get import parsing, access_token, category
 from routers.post import rss_url, posting
 from routers.delete import feed
 import uvicorn
@@ -7,6 +7,7 @@ import uvicorn
 app = FastAPI(title="Tistory Rss 피드 자동 포스팅")
 
 app.include_router(parsing.router, prefix="/parsing")
+app.include_router(category.router, prefix="/category")
 app.include_router(posting.router, prefix="/posting")
 app.include_router(access_token.router, prefix="/access")
 app.include_router(rss_url.router, prefix="/posting")
@@ -17,7 +18,7 @@ if __name__ == "__main__":
         "main:app",
         host="localhost",
         reload=True,
-        port=8080
+        port=8070
     )
 
 
