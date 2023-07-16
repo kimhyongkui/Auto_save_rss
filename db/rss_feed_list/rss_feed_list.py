@@ -8,12 +8,12 @@ Session = sessionmaker(bind=engine)
 session = Session()
 
 
-def delete_rss(rss_name):
+def patch_rss(rss_name, rss_url):
     try:
         result = session.query(Rss_list).filter(Rss_list.rssNm == rss_name).first()
         if result:
-            session.delete(result)
-            session.commit()
+            result.rssNm = rss_name
+            result.rssUrl = rss_url
             return JSONResponse(status_code=status.HTTP_200_OK, content={"message": "삭제 완료"})
         else:
             raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="데이터가 존재하지 않습니다.")
