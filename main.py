@@ -19,7 +19,7 @@ if __name__ == "__main__":
         "main:app",
         host="localhost",
         reload=True,
-        port=8070
+        port=8080
     )
 
 

@@ -20,7 +20,7 @@ def delete_rss(rss_name):
 
     except Exception as err:
         session.rollback()
-        return HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=str(err))
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=str(err))
 
     finally:
         session.close()
