@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 from db.post.rss_feed_list import add_rss
-from db.get.rss_feed_list import get_rss
+from db.get.rss_feed_list import get_rss, get_rss_all
 from db.delete.rss_feed_list import delete_rss
 from db.update.rss_feed_list import patch_rss
 
@@ -13,9 +13,15 @@ def add_rss_feed(rss_name, rss_url):
     return result
 
 
-@router.get("/rss-feed", tags=["RSS URL 검색"])
+@router.get("/rss-feed/specific", tags=["RSS URL 검색"])
 def get_rss_feed(rss_name):
     result = get_rss(rss_name)
+    return result
+
+
+@router.get("/rss-feed/all", tags=["RSS URL 검색"])
+def get_rss_feed_all():
+    result = get_rss_all()
     return result
 
 
