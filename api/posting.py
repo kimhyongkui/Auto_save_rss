@@ -47,6 +47,3 @@ def post_to_tistory(keywords: list):
 
     except Exception as err:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(err))
-
-
-print(post_to_tistory(["AI"]))
