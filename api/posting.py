@@ -4,6 +4,7 @@ import requests
 from dotenv import load_dotenv
 from api.parse_rss import parsing_rss
 from fastapi import HTTPException, status
+import time
 
 load_dotenv()
 
@@ -24,17 +25,17 @@ def post_to_tistory(keywords: list):
     try:
         now = datetime.now()
 
-        url = f"https://www.tistory.com/apis/post/write?" \
-              f"access_token={os.getenv('ACCESS_TOKEN')}" \
-              f"&output=json" \
-              f"&blogName=hyongkui" \
-              f"&title={now.month}월 {now.day}일 뉴스" \
-              f"&visibility=0" \
-              f"&category=1135999" \
-              f"&published=time.time()"
-
-        # 본문 데이터를 딕셔너리 형태로 전달하여 POST 요청을 보냄
-        response = requests.post(url, data={"content": write_content(keywords)})
+        url = "https://www.tistory.com/apis/post/write"
+        data = {"access_token": {os.getenv('ACCESS_TOKEN')},
+                "output": "json",
+                "blogName": "hyongkui",
+                "title": f"{now.month}월 {now.day}일 뉴스",
+                "content": write_content(keywords),
+                "visibility": 0,
+                "category": 1135999,
+                "published": time.time()
+                }
+        response = requests.post(url, data=data)
 
         if response.status_code == 200:
             result = "게시글이 성공적으로 작성되었습니다."
