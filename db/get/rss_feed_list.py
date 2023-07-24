@@ -15,6 +15,8 @@ def get_rss(rss_name):
         else:
             raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="데이터가 존재하지 않습니다.")
 
+    except HTTPException:
+        raise
     except Exception as err:
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=str(err))
 
@@ -27,5 +29,7 @@ def get_rss_all():
         else:
             raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="데이터가 존재하지 않습니다.")
 
+    except HTTPException:
+        raise
     except Exception as err:
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=str(err))

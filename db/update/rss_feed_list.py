@@ -18,6 +18,8 @@ def patch_rss(rss_name, rss_url):
         else:
             raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="데이터가 존재하지 않습니다.")
 
+    except HTTPException:
+        raise
     except Exception as err:
         session.rollback()
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=str(err))
