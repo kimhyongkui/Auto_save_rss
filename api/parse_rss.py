@@ -38,7 +38,7 @@ def parsing_rss(keywords: list):
                                 pass
                 for keyword in keywords:
 
-                    if parsed_updated == today and keyword in title:
+                    if parsed_updated == today and keyword.lower() in title.lower():
                         rss_list.append({
                             "title": title,
                             "link": link,
