@@ -17,6 +17,7 @@ def write_content(keywords: list):
         link = rss.get("link")
         content += f"<h3 data-ke-size='size23'>{title}</h3>\n"
         content += f"<p data-ke-size='size16'><a href='{link}'>{link}</a></p>\n"
+        content += f"<ul style='list-style-type: disc;' data-ke-list-type='disc'><li>&nbsp;</li></ul>"
         content += '<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />'
     return content
 
@@ -41,10 +42,14 @@ def post_to_tistory(keywords: list):
             result = "게시글이 성공적으로 작성되었습니다."
         elif response.status_code == 414:
             result = "URI에 담긴 내용이 너무 깁니다."
+        elif response.status_code == 400:
+            result = "게시글 작성에 실패했습니다."
         else:
-            result = "게시글 작성에 실패하였습니다."
+            result = f"{response.status_code}에러로 게시글 작성에 실패했습니다."
 
         return result
 
     except Exception as err:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(err))
+
+print(post_to_tistory(['ai', '인공지능', '보안', '로봇', 'gpt', '네이버', '카카오', '코딩']))
