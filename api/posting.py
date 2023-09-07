@@ -12,13 +12,17 @@ load_dotenv()
 def write_content(keywords: list):
     rss_list = parsing_rss(keywords)
     content = ""
+    duplicate_titles_and_links = set()
     for rss in rss_list:
         title = rss.get("title")
         link = rss.get("link")
-        content += f"<h3 data-ke-size='size23'>{title}</h3>\n"
-        content += f"<p data-ke-size='size16'><a href='{link}'>{link}</a></p>\n"
-        content += f"<ul style='list-style-type: disc;' data-ke-list-type='disc'><li>&nbsp;</li></ul>"
-        content += '<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />'
+        if (title, link) not in duplicate_titles_and_links:
+            duplicate_titles_and_links.add((title, link))
+            content += f"<h3 data-ke-size='size23'>{title}</h3>\n"
+            content += f"<p data-ke-size='size16'><a href='{link}'>{link}</a></p>\n"
+            content += f"<ul style='list-style-type: disc;' data-ke-list-type='disc'><li>&nbsp;</li></ul>"
+            content += '<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />'
+
     return content
 
 
