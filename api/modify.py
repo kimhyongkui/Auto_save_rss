@@ -13,7 +13,7 @@ def modify_posting(keywords: list, post_id):
     try:
         now = datetime.now()
 
-        url = "https://www.tistory.com/apis/post/write"
+        url = "https://www.tistory.com/apis/post/modify"
         data = {"access_token": {os.getenv('ACCESS_TOKEN')},
                 "output": "json",
                 "blogName": "hyongkui",
