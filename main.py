@@ -13,7 +13,6 @@ app.include_router(posting.router, prefix="/posting")
 app.include_router(access_token.router, prefix="/access")
 app.include_router(rss_url.router, prefix="/posting")
 
-
 if __name__ == "__main__":
     uvicorn.run(
         "main:app",
