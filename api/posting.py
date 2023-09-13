@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 from api.parse_rss import parsing_rss
 from fastapi import HTTPException, status
 import time
+import schedule
 
 load_dotenv()
 
@@ -55,3 +56,10 @@ def post_to_tistory(keywords: list):
 
     except Exception as err:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(err))
+
+
+schedule.every().day.at("15:10").do(lambda: post_to_tistory(['AI', '구글', 'GPT', '카카오', '로봇']))
+
+while True:
+    schedule.run_pending()
+    time.sleep(1)
