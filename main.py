@@ -22,6 +22,8 @@ def main():
 
 
 if __name__ == "__main__":
+    subprocess.Popen(["python", "work.py"])
+
     uvicorn.run(
         "main:app",
         host="localhost",
@@ -29,4 +31,4 @@ if __name__ == "__main__":
         port=8070
     )
 
-    subprocess.Popen(["python", "work.py"])
+
