@@ -29,6 +29,4 @@ if __name__ == "__main__":
         port=8070
     )
 
-    work_py = r'C:\\Users\\abc\\Desktop\\코딩\\Git_study\\auto_save_rss\\api\\work.py'
-
-    subprocess.Popen(["python", "work_py"])
+    subprocess.Popen(["python", "work.py"])
