@@ -22,7 +22,7 @@ def main():
 
 
 if __name__ == "__main__":
-    subprocess.Popen(["python", "work.py"])
+    subprocess.Popen(["python", "C:\\Users\\abc\\Desktop\\코딩\\Git_study\\auto_save_rss\\api\\work.py"])
 
     uvicorn.run(
         "main:app",
@@ -30,5 +30,3 @@ if __name__ == "__main__":
         reload=True,
         port=8070
     )
-
-
