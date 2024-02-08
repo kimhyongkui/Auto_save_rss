@@ -1,6 +1,6 @@
 import feedparser
 from datetime import datetime
-from db.get.url_list import get_url_list
+from crud.get.url_list import get_url_list
 from fastapi import HTTPException, status
 
 

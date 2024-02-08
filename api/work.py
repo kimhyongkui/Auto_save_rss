@@ -4,7 +4,7 @@ from api.posting import post_to_tistory
 
 
 def posting():
-    schedule.every().day.at("13:30").do(lambda: post_to_tistory(['AI', '구글', 'GPT', '카카오', '로봇']))
+    schedule.every().day.at("13:30").do(lambda: post_to_tistory(['AI', '구글', 'GPT', '코딩', 'it']))
 
     while True:
         schedule.run_pending()

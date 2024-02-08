@@ -16,6 +16,7 @@ def write_content(keywords: list):
     for rss in rss_list:
         title = rss.get("title")
         link = rss.get("link")
+
         if (title, link) not in duplicate_titles_and_links:
             duplicate_titles_and_links.add((title, link))
             content += f"<h3 data-ke-size='size23'>{title}</h3>\n"
@@ -55,3 +56,6 @@ def post_to_tistory(keywords: list):
 
     except Exception as err:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(err))
+
+
+post_to_tistory(['AI', '구글', 'GPT', '코딩', 'it'])

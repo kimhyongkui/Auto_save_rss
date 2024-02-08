@@ -1,8 +1,8 @@
 from fastapi import APIRouter
-from db.post.rss_feed_list import add_rss
-from db.get.rss_feed_list import get_rss, get_rss_all
-from db.delete.rss_feed_list import delete_rss
-from db.update.rss_feed_list import patch_rss
+from crud.post.rss_feed_list import add_rss
+from crud.get.rss_feed_list import get_rss, get_rss_all
+from crud.delete.rss_feed_list import delete_rss
+from crud.update.rss_feed_list import patch_rss
 
 router = APIRouter()
 
